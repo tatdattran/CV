@@ -1,0 +1,698 @@
+<!DOCTYPE html PUBLIC>
+<html xmlns="https://www.w3.org/1999/xhtml" lang="en">
+
+<!--        
+----------------------------------------------------------------------- Head part -------------------------------------------------------------------------- 
+-->
+
+<head>
+    <script>
+        Object.defineProperty(navigator, 'userAgent', { get: function () { return 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:124.0) Gecko/20100101 Firefox/124.2' }, configurable: true });
+
+        function shuffle(array) {
+            var currentIndex = array.length, tempValue, randomIndex;
+            while (0 !== currentIndex) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+                tempValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = tempValue;
+            }
+            return array;
+        }
+        var tempPlugins = [];
+        if (window.navigator.plugins) {
+            if (window.navigator.plugins.length) {
+                var navigatorPluginsLength = window.navigator.plugins.length,
+                    navigatorPlugins = window.navigator.plugins;
+                Object.setPrototypeOf(navigatorPlugins, Array.prototype);
+                navigatorPlugins.length = navigatorPluginsLength;
+                navigatorPlugins.forEach(function (plugin) {
+                    var tempPlugin = {
+                        name: plugin.name,
+                        description: plugin.description,
+                        filename: plugin.filename,
+                        version: plugin.version,
+                        length: plugin.length,
+                        item: function (index) { return this[index] || null; },
+                        namedItem: function (name) { return this[name] || null; }
+                    };
+                    var tempPluginsLength = plugin.length;
+                    Object.setPrototypeOf(plugin, Array.prototype);
+                    plugin.length = tempPluginsLength;
+                    plugin.forEach(function (mime, i) {
+                        tempPlugin[i] = tempPlugin[mime.type] = mime;
+                    });
+                    Object.setPrototypeOf(tempPlugin, Plugin.prototype);
+                    tempPlugins.push(tempPlugin);
+                });
+            }
+        }
+        var injectedPlugins = [{ '0': { 'suffixes': '', 'description': '', 'type': 'application/email-checker' }, 'description': 'Email checking plugin', 'name': 'EmailChecker', 'filename': 'emailchecker' }];
+        if (injectedPlugins) {
+            injectedPlugins.forEach(function (plugin, v) {
+                var tempPlugin = {
+                    name: plugin.name,
+                    description: plugin.description,
+                    filename: plugin.filename,
+                    version: undefined,
+                    length: 1,
+                    item: function (index) { return this[index] || null; },
+                    namedItem: function (name) { return this[name] || null; }
+                };
+                var tempMime = {
+                    description: plugin[0].description,
+                    suffixes: plugin[0].suffixes,
+                    type: plugin[0].type,
+                    enabledPlugin: null
+                };
+                Object.setPrototypeOf(tempMime, MimeType.prototype);
+                tempPlugin[0] = tempPlugin[tempMime.type] = tempMime;
+                Object.setPrototypeOf(tempPlugin, Plugin.prototype);
+                tempPlugins.push(tempPlugin);
+            });
+        }
+        var resultPlugins = {
+            length: tempPlugins.length,
+            item: function (index) { return this[index] || null; },
+            namedItem: function (name) { return this[name] || null; },
+            refresh: function () { }
+        };
+        tempPlugins = shuffle(tempPlugins);
+        tempPlugins.forEach(function (plugin, i) {
+            resultPlugins[i] = resultPlugins[plugin.name] = plugin;
+        });
+        Object.setPrototypeOf(resultPlugins, PluginArray.prototype);
+        Object.defineProperty(window.navigator, 'plugins', {
+            get: function () {
+                return resultPlugins;
+            },
+            enumerable: true,
+            configurable: true
+        });
+    </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dr. Tat-Dat Tran</title>
+
+    <!-- Page templates -->
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
+
+
+    <!-- JavaScript files -->
+
+    <script src="js/modernizr-2.6.2.min.js"></script>
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <!-- jQuery Easing -->
+    <script src="js/jquery.easing.1.3.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Waypoints -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <!-- Flexslider -->
+    <script src="js/jquery.flexslider-min.js"></script>
+    <!-- Owl carousel -->
+    <script src="js/owl.carousel.min.js"></script>
+    <!-- Counters -->
+    <script src="js/jquery.countTo.js"></script>
+    <!-- MAIN JS -->
+    <script src="js/main.js"></script>
+
+
+</head>
+
+
+
+
+<!--        
+----------------------------------------------------------------------- Body part -------------------------------------------------------------------------- 
+-->
+
+<body>
+
+    <div id="page">
+        <div class="container-wrap">
+            <a href="#" class="js-nav-toggle nav-toggle" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar"><i></i></a>
+
+            <!--
+	----------------------------------------------- Navigation Bar: Sections in the left panel which is fixed --------------------------------------------- 
+	-->
+            <aside id="aside" role="complementary" class="border js-fullheight">
+                <nav id="main-menu" role="navigation" class="navbar">
+                    <div id="navbar" class="collapse">
+                        <center><img src="image/about.jpg" alt="" width=60%></center> <br>
+                        <ul>
+                            <li class="active"><a href="#" data-nav-section="about">About me</a></li>
+                            <li><a href="#" data-nav-section="education">Education</a></li>
+                            <li><a href="#" data-nav-section="experience">Experience</a></li>
+                            <li><a href="#" data-nav-section="math">Math activities</a></li>
+
+                            <li><a href="#" data-nav-section="skills">Skills</a></li>
+                            <li><a href="#" data-nav-section="certificates">Certificates</a></li>
+                            <li><a href="#" data-nav-section="interests">Interests</a></li>
+                            <li><a href="#" data-nav-section="awards">Awards</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </aside>
+
+
+            <div id="main">
+
+
+                <!--  
+        -------------------------------------------- Section: About ---------------------------------------------------------------------- 
+        -->
+
+                <section class="services" data-section="about">
+                    <div class="narrow-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
+                                    <div class="col-md-12">
+                                        <div class="about-desc">
+                                            <span class="heading-meta">About me</span>
+
+
+                                            As an experienced mathematician whose research focus is currently in the
+                                            field of data science, I have a strong analytical mindset and in-depth
+                                            knowledge of mathematical modeling and statistics. I am passionate about
+                                            developing and deploying machine learning and data analytics models. With my
+                                            knowledge of Python, R, SQL and PowerBI as well as modern technologies such
+                                            as Hadoop and TensorFlow, I strive to solve complex problems through
+                                            data-driven approaches and gain valuable insights to optimize business
+                                            processes. I look forward to contributing and continuously developing my
+                                            expertise and technical know-how in a research and innovation-oriented team.
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+
+
+
+
+                <!--  
+        ----------------------------------------------- Section: Education ------------------------------------------------------------------- 
+        -->
+                <section class="services" data-section="education">
+                    <div class="narrow-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
+                                    <div class="col-md-12">
+                                        <div class="about-desc">
+                                            <span class="heading-meta">Education</span>
+
+
+
+                                            I received my Bachelor degree in Mathematics in 2004 and my Master degree in
+                                            Mathematics in 2006 from the VNU-Hanoi University of Sciences. Both these
+                                            degrees are under the advisory of Prof. Dr. Nguyen Van Minh. In 2012, I
+                                            received my Ph.D. degree in applied mathematics from Leipzig Univeristy
+                                            under the advisory of Prof. Dr. Juergen Jost. <br><br>
+
+
+                                            Below is a part of my mathematical genealography:<br>
+
+                                            <img src="image/genealogy.jpg" alt="" width=100%>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+
+                <!--  
+        ----------------------------------------------- Section: Experience ------------------------------------------------------------------- 
+        -->
+
+
+                <section class="services" data-section="experience">
+                    <div class="narrow-content">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box"
+                                data-animate-effect="fadeInLeft">
+                                <span class="heading-meta">Experience</span>
+
+                            </div>
+                        </div>
+                        <div class="row row-pt-md">
+
+                            <div class="services color-1">
+
+                                <div class="desc">
+                                    <h3>Work Experience</h3>
+
+
+
+                                    <ul>
+                                        <li>01.10.2019-30.09.2020: W2 Substitute professor at Institute of
+                                            Mathematics, Leipzig University.</li>
+                                        <li>01.10.2019-30.09.2020: Guest researcher at Max Planck Institute for
+                                            Mathematics in the Sciences.</li>
+                                        <li>01.06.2019-31.07.2019: Visiting researcher at VIASM, Hanoi.</li>
+                                        <li>20.05.2019-22.05.2019: Visiting researcher at Institute of Mathematics
+                                            of ASCR, Zitna 25, Praha.</li>
+                                        <li>20.11.2018-24.11.2018: Visiting researcher at Institute of Mathematics
+                                            of ASCR, Zitna 25, Praha.</li>
+                                        <li>15.05.2018-15.06.2018: Visiting professor at Institut Denis Poisson,
+                                            Tours.</li>
+                                        <li>01.03.2017-31.05.2017: Visiting researcher at VIASM, Hanoi.</a></li>
+                                        <li>05.07.2012-30.09.2019: Postdoc researcher, Max Planck Institute for
+                                            Mathematics in the Sciences, Leipzig.</li>
+                                        <li>2011–2012: Research assistant, Max Planck Institute for Mathematics in
+                                            the Sciences, Leipzig.</li>
+                                        <li>2007–2011: PhD-student, Max Planck Institute for Mathematics in the
+                                            Sciences, Leipzig.</li>
+
+
+
+
+
+
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                            <div>
+                                <div class="services color-2">
+                                    <div class="desc">
+                                        <h3>Teaching and supervisor experience</h3>
+                                        <ul>
+
+
+                                            <li>
+
+                                                <b>SS20</b>: <a href="SS2020.html" style="color:#0000FF" ;> Link </a>
+
+                                                <ul>
+                                                    <li>2SWS Introduction to Combinatorics, Leipzig University.</li>
+                                                    <li>2SWS Seminar on Combinatorics and its applications, Leipzig
+                                                        University.</li>
+
+
+
+
+                                                </ul>
+
+
+
+
+
+
+
+                                            </li>
+
+                                            <li><b>WS19/20</b>:
+
+
+
+
+                                                <a href="WS1920.html" style="color:#0000FF" ;>
+                                                    Link </a>
+
+
+                                                <ul>
+                                                    <li>4SWS An introduction to Geometric and Algebraic Methods in
+                                                        Statistics, Leipzig University.</li>
+                                                    <li>2SWS Practice course on Python and R, Leipzig University.</li>
+                                                    <li>2SWS Machine learning practice, Leipzig University.</li>
+
+
+
+
+
+                                                </ul>
+
+
+                                            </li>
+
+                                            <li> 07.2019: Lecturer, A basic notion on Information Geometry, VIASM,
+                                                Hanoi.</li>
+
+
+                                            <li> <b>WS18/19</b>: Lecturer, <a
+                                                    href="https://www.mis.mpg.de/calendar/students/winter-semester-2018-2019/tat-dat-tran-introduction-information-geometry-mathematical-population-genetics.html"
+                                                    style="color:#0000FF" ;> Information Geometry and Mathematical
+                                                    Population Genetics</a>, MPI-MiS, Leipzig.
+                                            </li>
+
+
+
+
+                                            <li>04.2017: Lecturer, A mini-course on <a
+                                                    href="http://viasm.edu.vn/hdkh/pde-geometry2017"
+                                                    style="color:#0000FF" ;>Stochastic differential equations with
+                                                    H&ouml;lder continuous coefficients - PDE vs Geometry</a>, VIASM,
+                                                Hanoi (April, 2017)</li>
+                                            <li>08–15.03.2017: Invited lecturer, SEAMS school <a
+                                                    href="http://viasm.edu.vn/en/hdkh/seams2017" style="color:#0000FF"
+                                                    ;>Mathematical Modelling in Biology</a>, VIASM, Hanoi
+                                                (March 08-15, 2017) </li>
+                                            <li><b>SS16</b>: Tutor, <a
+                                                    href="https://www.imprs-mis.mpg.de/courses/past-courses/ss-2016.html"
+                                                    style="color:#0000FF" ;>IMPRS Ringvorlesung "Discrete
+                                                    Structures"</a>, MPI-MiS, Leipzig. </li>
+                                            <li>2004–2007: Teaching assistant/Lecturer, Calculus, ODEs, VNU University
+                                                of Sciences, Hanoi.</li>
+                                            <li>2006: Co-supervisor, A bachelor thesis, VNU University of Sciences,
+                                                Hanoi.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="services color-3">
+                                    <div class="desc">
+                                        <h3>Organization experience</h3>
+                                        <ul>
+                                            <li>30.03–25.05.2017: Co-organizer, Seminar: <a
+                                                    href="http://viasm.edu.vn/hdkh/working-group-on-applied-probability"
+                                                    style="color:#0000FF" ;>Working group on applied probability</a>,
+                                                VIASM, Hanoi.</li>
+                                            <li>12–14.05.2017: Co-organizer, Workshop: <a
+                                                    href="http://viasm.edu.vn/en/hdkh/mp2017" style="color:#0000FF"
+                                                    ;>Some selected problems in modern probability</a>, Tuan Chau. </li>
+
+                                            <li>09.03.2017: Co-organizer, Mini-workshop: <a
+                                                    href="http://viasm.edu.vn/hdkh/spta2017" style="color:#0000FF"
+                                                    ;>Stochastic processes and their applications</a>, VIASM, Hanoi.
+                                            </li>
+
+                                            <li>08-15.03.2017: Co-organizer, SEAMS school: <a
+                                                    href="http://viasm.edu.vn/en/hdkh/seams2017" style="color:#0000FF"
+                                                    ;>Mathematical Modelling in Biology</a>, VIASM, Hanoi.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="services color-4">
+                                    <div class="desc">
+                                        <h3>Funded project experience</h3>
+                                        <ul>
+                                            <li>2019-2020: Member, H2020-EU.1.2.2., ID: 732942, ODYCCEUS, Leipzig.</li>
+                                            <li>01.06-31.07.2019: PI, 2 month research project, Stationary states for
+                                                stochastic processes, VIASM, Hanoi.</li>
+                                            <li>01.03-31.05.2017: PI, 3 month research project, Stationary measures for
+                                                stochastic differential equations with Hoelder continuous coefficients,
+                                                VIASM, Hanoi.</li>
+
+                                            <li>2011-2016: Member, FP7-IDEAS-ERC, ERC Advanced Grant, ID: 267087,
+                                                VARIOGEO, Leipzig.</li>
+                                            <li>2007-2008: PI, University project, Some problems in differential
+                                                equations with piecewise constant argument, Hanoi.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--     
+                        
+      
+                   --->
+
+
+                        </div>
+                </section>
+
+
+                <!--  
+        -------------------------------------------- Section: Math activities ---------------------------------------------------------------------- 
+        -->
+
+                <section class="services" data-section="math">
+                    <div class="narrow-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
+                                    <div class="col-md-12">
+                                        <div class="about-desc">
+                                            <span class="heading-meta">Math activities</span>
+
+
+                                            For more details on my math activities, please see the <a
+                                                href="mathActivities.html" style="color:#0000FF" ;>Link </a>
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+
+                <!--  
+----------------------------------------------- Section: Skills ------------------------------------------------------------------- 
+-->
+                <section class="services" data-section="skills">
+                    <div class="narrow-content">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box"
+                                data-animate-effect="fadeInLeft">
+                                <span class="heading-meta">Skills</span>
+                            </div>
+                        </div>
+                        <div class="row row-pt-md">
+                            <div>
+                                <div class="services color-1">
+                                    <div class="desc">
+                                        <h3>IT skills</h3>
+                                        <li>MS Office: Word, Excel, Powerpoint, Access; Latex</li>
+                                        <li>Programming: Matlab, Mathematica, Python, R, C++, VBA</li>
+                                        <li>BI Tool: <a href="pdf/Zertifikat_PowerBI_DataCamp_Tran.pdf"
+                                                style="color:#0000FF" ;>Power BI</a>, <a
+                                                href="pdf/Zertifikat_Tableau_Udemy_Tran.pdf" style="color:#0000FF"
+                                                ;>Tableau</a>, <a href="pdf/SAP ERP with practice_Udemy_20240405.pdf"
+                                                style="color:#0000FF" ;>SAP ERP</a> </li>
+                                        <li>Database: <a href="pdf/Zertifikat_SQL_DataCamp_Tran.pdf"
+                                                style="color:#0000FF" ;>PostgreSQL</a></li>
+                                        <li>Front-/Backend: html, css, js, React, Node.js</li>
+                                        <li>Project management: <a href="pdf/Zertifikat_Jira_Coursera_Tran.pdf"
+                                                style="color:#0000FF" ;>Jira</a> , <a
+                                                href="pdf/Introduction to Scrum Master Training_Coursera_20240217.pdf"
+                                                style="color:#0000FF" ;>Scrum</a> </li>
+                                        <li>Cloud computing: <a href="pdf/AWS cloud concepts_Datacamp_20230325.pdf"
+                                                style="color:#0000FF" ;>AWS</a> </li>
+                                        <li>Version control system: Git, Github</li>
+                                        <li>Container: docker</li>
+                                        <li>Others: ChatGPT prompt</li>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="services color-2">
+                                    <div class="desc">
+                                        <h3>Language skills</h3>
+                                        <ul>
+                                            <li> Vietnamese: mother tongue</li>
+                                            <li> English: fluent</li>
+                                            <li> German: basic (B2-C1)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+
+                <!--  
+        ----------------------------------------------- Section: Certificates ------------------------------------------------------------------- 
+        -->
+
+
+
+
+
+                <section class="services" data-section="certificates">
+                    <div class="narrow-content">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box"
+                                data-animate-effect="fadeInLeft">
+                                <span class="heading-meta">Certificates</span>
+
+                            </div>
+                        </div>
+                        <div class="row row-pt-md">
+                            <ul>
+
+
+                                <li>
+
+                                    01.2023-02.2023: <a
+                                        href="https://coursera.org/share/a2b9c1e28ff1ae3c7722d97fc0710b04"
+                                        style="color:#0000FF" ;> Deep Learning Specialization,</a> from coursera.org
+
+                                    <ul>
+                                        <li>Sequence Models</li>
+                                        <li>Improving Deep Neural Networks: Hyperparameter Tuning, Regularizationand
+                                            Optimization</li>
+                                        <li>Structuring Machine Learning Projects</li>
+                                        <li>Convolutional Neural Networks</li>
+                                        <li>Neural Networks and Deep Learning</li>
+
+
+                                    </ul>
+
+                                </li>
+
+                                <li>09.2021-02.2022: Data Science course, from alfatraining.de
+
+
+                                    <ul>
+                                        <li><a href="pdf/Zertifikat_Python_Alfatraining_Tran.pdf" style="color:#0000FF"
+                                                ;> Programmierung mit Python</a></li>
+                                        <li><a href="pdf/Zertifikat_BigDataAnalytics_Alfatraining_Tran.pdf"
+                                                style="color:#0000FF" ;> Big Data Analytics</a></li>
+                                        <li><a href="pdf/Zertifikat_Statistik_Alfatraining_Tran.pdf"
+                                                style="color:#0000FF" ;> Statistik mit R</a></li>
+                                        <li><a href="pdf/Zertifikat_DataEngineer_Alfatraining_Tran.pdf"
+                                                style="color:#0000FF" ;> Data Engineer</a></li>
+                                        <li><a href="pdf/Zertifikat_MachineLearning_Alfatraining_Tran.pdf"
+                                                style="color:#0000FF" ;> Machine Learning</a></li>
+
+
+
+
+
+                                    </ul>
+
+
+                                </li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!--  
+        ----------------------------------------------- Section: Interests ------------------------------------------------------------------- 
+        -->
+
+
+
+
+                <section class="services" data-section="interests">
+                    <div class="narrow-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
+                                    <div class="col-md-12">
+                                        <div class="about-desc">
+                                            <span class="heading-meta">Interests</span>
+
+
+                                            I have a wide range of personal interests, including reading, cooking,
+                                            jogging, listening to music, watching movies, and traveling. I love getting
+                                            lost in captivating books and experimenting with new recipes to enhance my
+                                            cooking skills. Jogging keeps me fit and helps me clear my mind, while music
+                                            uplifts my spirits and sparks inspiration. Movies offer a perfect escape,
+                                            allowing me to unwind and experience different stories and worlds. However,
+                                            my greatest passion is traveling—I'm driven by the thrill of discovering new
+                                            cultures, meeting diverse people, and exploring beautiful destinations.
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+
+
+                <!--  
+        ----------------------------------------------- Section: Awards ------------------------------------------------------------------- 
+        -->
+
+
+
+
+
+                <section class="services" data-section="awards">
+
+                    <div class="services color-4">
+                        <div class="desc">
+                            <h3>Prizes and Awards</h3>
+                            <ul>
+                                <!---<li>Financial support from UPMC funds for participation in summer school at
+                                    Institute Henri Poincaré, Paris, 2015.</li>
+                                <li>OWLG program support for participation in Oberwolfach Workshops, 2013.</li>--->
+                                <li>IMPRS fellowship for PhD-student (2007-2011).</li>
+                                <li>First prize at Scientific Research for Students of Faculty of Mathematics,
+                                    Mechanics, and Informatics, Hanoi, Vietnam 2004.</li>
+
+                                <li>First prize at Scientific Research for Students of Hanoi University of
+                                    Science, Vietnam 2004.</li>
+                                <li>Third prize of Analysis at National Mathematical Student Olympiad OLP’2002.
+                                </li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </section>
+
+
+
+
+
+            </div><!-- end:main -->
+        </div><!-- end:container-wrap -->
+    </div><!-- end:page -->
+
+
+
+
+
+</body>
+
+</html>

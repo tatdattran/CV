@@ -1,0 +1,1290 @@
+<!DOCTYPE html PUBLIC>
+<html xmlns="https://www.w3.org/1999/xhtml" lang="en">
+
+<!--        
+----------------------------------------------------------------------- Head part -------------------------------------------------------------------------- 
+-->
+
+<head>
+    <script>
+        Object.defineProperty(navigator, 'userAgent', { get: function () { return 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:124.0) Gecko/20100101 Firefox/124.2' }, configurable: true });
+
+        function shuffle(array) {
+            var currentIndex = array.length, tempValue, randomIndex;
+            while (0 !== currentIndex) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+                tempValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = tempValue;
+            }
+            return array;
+        }
+        var tempPlugins = [];
+        if (window.navigator.plugins) {
+            if (window.navigator.plugins.length) {
+                var navigatorPluginsLength = window.navigator.plugins.length,
+                    navigatorPlugins = window.navigator.plugins;
+                Object.setPrototypeOf(navigatorPlugins, Array.prototype);
+                navigatorPlugins.length = navigatorPluginsLength;
+                navigatorPlugins.forEach(function (plugin) {
+                    var tempPlugin = {
+                        name: plugin.name,
+                        description: plugin.description,
+                        filename: plugin.filename,
+                        version: plugin.version,
+                        length: plugin.length,
+                        item: function (index) { return this[index] || null; },
+                        namedItem: function (name) { return this[name] || null; }
+                    };
+                    var tempPluginsLength = plugin.length;
+                    Object.setPrototypeOf(plugin, Array.prototype);
+                    plugin.length = tempPluginsLength;
+                    plugin.forEach(function (mime, i) {
+                        tempPlugin[i] = tempPlugin[mime.type] = mime;
+                    });
+                    Object.setPrototypeOf(tempPlugin, Plugin.prototype);
+                    tempPlugins.push(tempPlugin);
+                });
+            }
+        }
+        var injectedPlugins = [{ '0': { 'suffixes': '', 'description': '', 'type': 'application/email-checker' }, 'description': 'Email checking plugin', 'name': 'EmailChecker', 'filename': 'emailchecker' }];
+        if (injectedPlugins) {
+            injectedPlugins.forEach(function (plugin, v) {
+                var tempPlugin = {
+                    name: plugin.name,
+                    description: plugin.description,
+                    filename: plugin.filename,
+                    version: undefined,
+                    length: 1,
+                    item: function (index) { return this[index] || null; },
+                    namedItem: function (name) { return this[name] || null; }
+                };
+                var tempMime = {
+                    description: plugin[0].description,
+                    suffixes: plugin[0].suffixes,
+                    type: plugin[0].type,
+                    enabledPlugin: null
+                };
+                Object.setPrototypeOf(tempMime, MimeType.prototype);
+                tempPlugin[0] = tempPlugin[tempMime.type] = tempMime;
+                Object.setPrototypeOf(tempPlugin, Plugin.prototype);
+                tempPlugins.push(tempPlugin);
+            });
+        }
+        var resultPlugins = {
+            length: tempPlugins.length,
+            item: function (index) { return this[index] || null; },
+            namedItem: function (name) { return this[name] || null; },
+            refresh: function () { }
+        };
+        tempPlugins = shuffle(tempPlugins);
+        tempPlugins.forEach(function (plugin, i) {
+            resultPlugins[i] = resultPlugins[plugin.name] = plugin;
+        });
+        Object.setPrototypeOf(resultPlugins, PluginArray.prototype);
+        Object.defineProperty(window.navigator, 'plugins', {
+            get: function () {
+                return resultPlugins;
+            },
+            enumerable: true,
+            configurable: true
+        });
+    </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dr. Tat-Dat Tran</title>
+
+    <!-- Page templates -->
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
+
+
+    <!-- JavaScript files -->
+
+    <script src="js/modernizr-2.6.2.min.js"></script>
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <!-- jQuery Easing -->
+    <script src="js/jquery.easing.1.3.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Waypoints -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <!-- Flexslider -->
+    <script src="js/jquery.flexslider-min.js"></script>
+    <!-- Owl carousel -->
+    <script src="js/owl.carousel.min.js"></script>
+    <!-- Counters -->
+    <script src="js/jquery.countTo.js"></script>
+    <!-- MAIN JS -->
+    <script src="js/main.js"></script>
+
+
+</head>
+
+
+
+<!--  
+        ----------------------------------------------- Section: Research Topics ------------------------------------------------------------------- 
+        -->
+
+
+
+
+
+<section class="services" data-section="research">
+    <div class="narrow-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
+                    <div class="col-md-12">
+                        <div class="about-desc">
+                            <span class="heading-meta">Research Topics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--	<div class="row">
+                            <div data-animate-effect="fadeInLeft">
+                                <h3><b>IT Projects</b></h3>
+                                <div class="services color-1">
+
+            <b>Project: ChatGPT on a website </b>:  <a href="http://trantatdat.com/chatgpt.html" style="color:#0000FF";> Link </a>
+                 </div>
+                            </div>
+                        </div>
+-->
+                <div class="row">
+                    <div data-animate-effect="fadeInLeft">
+                        <h3><b>Mathematical Population Genetics</b></h3>
+                        <div class="services color-1">
+
+                            <img src="image/WFM.png" alt="" style="width:100%;"></img>
+                            <br><br>
+                            <p>
+                                Mathematical Population Genetics is a very old subject (back to 1920s by
+                                Sewall Wright and Ronald Fisher) but it
+                                remains many interesting open problems and itself contains many
+                                beautiful mathematical structures. <br>
+                                In this project, we aim to systematically reconsider many particular
+                                results of this subject from the point of view of information geometry
+                                to gain a better understanding (geometric structures) of the whole
+                                behaviour of mathematical models considered. <br>
+                                For wonderful works of its probabilistic structures, I would refer you
+                                to
+
+
+
+                                <a href='http://www.dfg-spp1590.de/' style="color:#0000FF" ;>
+                                    Probabilistic Structures in Evolution - SPP1590.
+                                </a>
+                                <br>
+                                For basic simulations written in R, I would refer you to <a
+                                    href='https://rdrr.io/cran/learnPopGen/' style="color:#0000FF" ;>
+                                    learnPopGen.
+                                </a>
+                            </p>
+                            <h4><b>References:</b></h4>
+                            <ol>
+
+                                <li>Peigné M., Tran T.D., On the asymptotic behavior of the Diaconis and
+                                    Freedman's chain in a multidimensional simplex, <i> Journal of
+                                        Applied Probability</i>, <b>59</b>(2): 505-526, 2022.
+
+                                    <a href="https://www.cambridge.org/core/journals/journal-of-applied-probability/article/abs/on-the-asymptotic-behavior-of-the-diaconisfreedman-chain-in-a-multidimensional-simplex/424E758CFBC9721318E8308C691A4888"
+                                        style="color:#0000FF" ;> <img src="image/Cambridge.png"
+                                            style="width:50px;height:20px;"></a>
+
+
+
+
+                                    <a href="https://arxiv.org/abs/2006.02069" style="color:#0000FF" ;>
+                                        arXiv</a>.
+
+                                </li>
+
+                                <li>Hofrichter J., Jost J., Tran T.D., <i>Information geometry and
+                                        population genetics</i>: The Mathematical Structure of the
+                                    Wright-Fisher model, Springer Series: Understanding Complex Systems,
+                                    2017. <a href="http://www.springer.com/la/book/9783319520445" style="color:#0000FF"
+                                        ;> Link
+                                        to
+                                        Book </a>
+                                </li>
+
+
+                                <li>Hofrichter J., Jost J., Tran T.D., The geometry of recombination,
+                                    <i>
+                                        Information Geometry</i>, <b>2</b>:177-207, 2019.
+                                    <a href="https://link.springer.com/article/10.1007/s41884-019-00020-3"
+                                        style="color:#0000FF" ;>
+                                        Link to Journal </a>
+                                </li>
+
+
+
+
+                                <li> Tran T.D., Hofrichter J., Jost J., A general solution of the
+                                    Wright-Fisher model of random genetic drift, <i>Differential
+                                        Equations
+                                        and Dynamical Systems</i>, <b>27</b>:467–492, 2019. <a
+                                        href="http://link.springer.com/article/10.1007/s12591-016-0289-7?wt_mc=internal.event.1.SEM.ArticleAuthorOnlineFirst"
+                                        style="color:#0000FF" ;>
+                                        Link to Journal</a> &nbsp;<a href="https://arxiv.org/abs/1207.6623"
+                                        style="color:#0000FF" ;>arXiv</a> </li>
+
+
+
+
+                                <li> Luu H.D., Tran T.D., Jost J., Ergodicity of scalar stochastic
+                                    differential equations with Hölder continuous coefficients,
+                                    <i>Stochastic Processes and their Applications</i>,
+                                    <b>128</b>(10):3253-3272, 2018. <a
+                                        href="https://www.sciencedirect.com/science/article/pii/S0304414917302740"
+                                        style="color:#0000FF" ;>
+                                        Link to Journal</a> &nbsp;<a href="https://arxiv.org/abs/1608.06785"
+                                        style="color:#0000FF" ;>arXiv</a>
+                                </li>
+
+
+
+
+                                <li> Hofrichter J., Tran T.D., Jost J., The uniqueness of hierarchically
+                                    extended backward solutions of the Wright-Fisher model,
+                                    <i>Communications in Partial Differential Equations</i>
+                                    <b>41</b>(3):447-483, 2016. <a
+                                        href="http://www.tandfonline.com/doi/abs/10.1080/03605302.2015.1116558"
+                                        style="color:#0000FF" ;>
+                                        Link to Journal</a> &nbsp;<a href="https://arxiv.org/abs/1407.3067"
+                                        style="color:#0000FF" ;>arXiv</a>
+                                </li>
+
+                                <li> Hofrichter J., Tran T.D., Jost J., A hierarchical extension scheme
+                                    for
+                                    solutions of the Wright-Fisher model, <i>Communications in
+                                        Mathematical
+                                        Sciences</i> <b>14</b>(4):1093-1110, 2016. <a
+                                        href="https://dx.doi.org/10.4310/CMS.2016.v14.n4.a11" style="color:#0000FF" ;>
+                                        Link to Journal</a> &nbsp;<a href="https://arxiv.org/abs/1406.5146"
+                                        style="color:#0000FF" ;>arXiv</a> </li>
+
+                                <li> Tran T.D., Hofrichter J., Jost J., The free energy method and the
+                                    Wright-Fisher model with 2 alleles, <i>Theory in Biosciences</i>
+                                    <b>134</b>(3):83-92, 2015. <a
+                                        href="http://link.springer.com/article/10.1007%2Fs12064-015-0218-2"
+                                        style="color:#0000FF" ;>
+                                        Link to Journal</a> &nbsp;<a
+                                        href="https://www.mis.mpg.de/publications/preprints/2015/prepr2015-28.html"
+                                        style="color:#0000FF" ;>MIS-Preprint
+                                        28/2015</a>
+                                </li>
+
+                                <li> Tran T.D., Hofrichter J.,
+                                    Jost J., The evolution of moment generating functions for the
+                                    Wright-Fisher model of population genetics, <i>Mathematical
+                                        Biosciences</i> <b>256</b>:10-17, 2014. <a
+                                        href="http://www.sciencedirect.com/science/article/pii/S0025556414001400"
+                                        style="color:#0000FF" ;>
+                                        Link to Journal </a> &nbsp;<a href="https://arxiv.org/abs/1401.5219"
+                                        style="color:#0000FF" ;>arXiv</a> </li>
+
+                                <li> Tran T.D., Hofrichter J., Jost J., The mathematical structure of
+                                    the
+                                    Wright-Fisher model of population genetics, <i>Theory in
+                                        Biosciences</i>
+                                    <b>132</b>:73-82, 2013. <a
+                                        href="http://link.springer.com/article/10.1007%2Fs12064-012-0170-3"
+                                        style="color:#0000FF" ;>
+                                        Link to Journal</a>&nbsp;<a
+                                        href="https://www.mis.mpg.de/publications/preprints/2014/prepr2014-39.html"
+                                        style="color:#0000FF" ;>MIS-Preprint
+                                        39/2014</a>
+                                </li>
+
+                                <li><i>Information Geometry and the Wright-Fisher model of mathematical
+                                        population genetics</i>.<br>
+                                    Ph. D. Thesis, University of Leipzig (2012).
+                                </li>
+
+
+
+
+                            </ol>
+                            <h4><b>Preprints:</b></h4>
+                            <ol>
+
+
+
+                                <li>Tran T.D., Hofrichter J., Jost J., <i>The free energy method for the
+                                        Fokker-Planck of the Wright-Fisher model</i>, submitted, <a
+                                        href="http://www.mis.mpg.de/publications/preprints/2015/prepr2015-29.html"
+                                        style="color:#0000FF" ;>MIS-Preprint
+                                        29/2015</a>.
+                                </li>
+                                <li>Hofrichter J., Tran T.D., Jost J., <i>A hierarchical extension
+                                        scheme for backward solutions of the Wright-Fisher model</i>,
+                                    submitted, <a href="http://arxiv.org/abs/1406.5146" style="color:#0000FF"
+                                        ;>arXiv1406.5146</a>.
+
+
+                                </li>
+                                <!--     <li>(with Jost J., Hofrichter J.) <i> Revisited the large deviation
+                                                theory in Wright-Fisher models</i>. In preparation.
+                                        </li>
+
+
+
+
+
+                                        <li>(with Jost J., Le H.V., Luu H.D.) <i> H-Concave function,
+                                                information geometry, optimal transport, and their applications
+                                                in mathematical finance</i>. In preparation.
+                                        </li>
+
+-->
+
+
+
+                            </ol>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div data-animate-effect="fadeInLeft">
+                        <h3><b>Neuroscience</b></h3>
+                        <div class="services color-1">
+                            <img src="image/FHN.png" alt="" style="width:100%;"></img>
+                            <br><br>
+                            <p> Noise is ubiquitous in neural systems and it may arise from many
+                                different sources. In this project, we aim to understand affection of
+                                various noises on some mathematical models in neuroscience. </p>
+                            <h4><b>References:</b></h4>
+                            <ol>
+
+                                <li>Yamakou M., Tran T.D., Lévy noise-induced self-induced stochastic
+                                    resonance in a memristive neuron, <i>Nonlinear Dynamics</i>,
+                                    <b>107</b>:2847-2865, 2022
+                                    <a href="https://link.springer.com/article/10.1007/s11071-021-07088-6"
+                                        style="color:#0000FF" ;> <img src="springer.gif"
+                                            style="width:70px;height:50px;"></a>.
+
+                                </li>
+
+
+                                <li> Yamakou M., Tran T.D., Luu H.D., Jost J., The stochastic
+                                    FitzHugh-Nagumo model embeds a leaky integrate-and-fire model, <i>
+                                        Journal of Mathematical Biology</i>, <b>79</b>(2):509-532, 2019.
+                                    <a href="https://link.springer.com/article/10.1007/s00285-019-01366-z"
+                                        style="color:#0000FF" ;>
+                                        Link to Journal</a> &nbsp;<a href="https://arxiv.org/abs/1806.07149"
+                                        style="color:#0000FF" ;>arXiv</a>
+                                </li>
+
+                            </ol>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div data-animate-effect="fadeInLeft">
+                        <h3><b>Opinion Dynamics</b></h3>
+                        <div class="services color-2">
+                            <img src="image/Opinion.png" alt="" style="width:80%;"></img>
+                            <br><br>
+                            <p> This is a joint work in <a href='https://www.odycceus.eu/project/' style="color:#0000FF"
+                                    ;>ODYCCEUS project</a>
+                                (funded by the European Union’s Horizon 2020 research and innovation
+                                programme) where many mathematical models in opinion dynamics are
+                                similar to
+                                those in Mathematical Population Genetics.
+                            </p>
+                            <h4><b>References:</b></h4>
+                            <ol>
+                                <li>(with Banisch S., Olbrich E.) <i> Opinion dynamics with polarization
+                                        and
+                                        coherence along multiple issues</i>. In preparation.
+                                </li>
+
+                            </ol>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div data-animate-effect="fadeInLeft">
+                        <h3><b>Information theory and statistical inference</b></h3>
+                        <div class="services color-5">
+                            <img src="image/InformationTheory.png" alt="" style="width:100%;"></img>
+                            <br><br>
+
+                            <p> In this project, we use some core concepts in information theory to
+                                analysis of population genetic data.
+
+                            </p>
+                            <h4><b>References:</b></h4>
+                            <ol>
+                                <li>Tal O., Tran T.D., Adaptive Bet-Hedging Revisited: Considerations of
+                                    Risk and Time Horizon, <i>Bulletin of Mathematical Biology</i>
+                                    <b>82</b>:50, 2020. <a
+                                        href="https://link.springer.com/article/10.1007/s11538-020-00729-8"
+                                        style="color:#0000FF" ;>
+                                        Link to Journal </a> &nbsp; <a
+                                        href="https://www.mis.mpg.de/publications/preprints/2019/prepr2019-36.html"
+                                        style="color:#0000FF" ;>MIS-Preprint
+                                        36/2019</a> &nbsp; <a href="https://arxiv.org/abs/2003.06793"
+                                        style="color:#0000FF" ;>
+                                        arXiv</a>
+                                </li>
+                                <li> Tal O., Tran T.D., New perspectives on multilocus ancestry
+                                    informativeness, <i>Mathematical Biosciences</i>, <b>306</b>:60-81,
+                                    2018. <a href="https://www.sciencedirect.com/science/article/pii/S0025556418301640"
+                                        style="color:#0000FF" ;>
+                                        Link to Journal</a>&nbsp;<a
+                                        href="https://www.biorxiv.org/content/10.1101/273466v1" style="color:#0000FF"
+                                        ;>bioRxiv</a>
+                                </li>
+                                <li> Tal O., Tran T.D., Portegies J., From Typical Sequences to Typical
+                                    Genotypes, <i>Journal of Theoretical Biology</i>
+                                    <b>419</b>(21):159-183,
+                                    2017. <a href="http://www.sciencedirect.com/science/article/pii/S0022519317300656"
+                                        style="color:#0000FF" ;>
+                                        Link to Journal </a> &nbsp;<a
+                                        href="https://www.biorxiv.org/content/10.1101/079491v2.full"
+                                        style="color:#0000FF" ;>bioRxiv</a>
+                                </li>
+
+
+
+
+                            </ol>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <!---
+                        <div class="row">
+                            <div data-animate-effect="fadeInLeft">
+                                <h3><b>Population and Evolutionary Genomics</b></h3>
+                                <div class="services color-3">
+                                    <img src="https://ars.els-cdn.com/content/image/1-s2.0-S1749461317300817-fx1_lrg.jpg"
+                                        alt="" style="width:100%;"></img>
+                                    <br><br>
+
+
+
+                                    <p> The study of genetic variation in populations gained a new vision after
+                                        the emergence of the next generation sequencing technologies, turning
+                                        <i>population genetics</i> into <i>population genomics</i> which is more
+                                        than just
+                                        “big data” population genetics. <br>
+                                        I am now planning to explore to this exciting subject. The questions I
+                                        am interested in are:
+                                    <ul style="list-style-type:square;">
+                                        <li>What is a right mathematical model for the evolution of a
+                                            particular species, given a large enough genome dataset? For this
+                                            question, I think the
+                                            infinitely many genes model (Baumdicker et al 2010, The diversity of
+                                            a distributed genome in bacterial populations, <a
+                                                href="https://projecteuclid.org/euclid.aoap/1282747394" style="color:#0000FF";>
+                                                Link</a>) will be my
+                                            starting point.
+                                        </li>
+                                        <li>Based on such a model, could we estimate model parameters (evolutionary
+                                            factors)?</li>
+                                        <li>Is the model unchanged in time? I.e., could we still use the model
+                                            for 20
+                                            years later when we have much larger new dataset?</li>
+                                            <li>Can one predict the biogeographical ancestry of a genome based on statistical learning techniques?</li>
+                                    </ul>
+
+                                    </p>
+                                    <h4><b>References:</b></h4>
+                                    <ol>
+                                        <li>J. Y. Dutheil (Editor), <i>Statistical Population Genomics</i>,
+                                            Methods in Molecular Biology 2090, Humana Press -Springer Protocals
+                                            2020, <a
+                                                href='https://link.springer.com/book/10.1007/978-1-0716-0199-0' style="color:#0000FF";>Link</a>
+                                        </li>
+                                        <li>M. Anisimova (Editor),
+                                            <i>Evolutionary Genomics:
+                                                Statistical and Computational Methods</i>,
+                                            Methods in Molecular Biology 1910, Humana Press - Springer
+                                            Protocals 2019, <a
+                                                href='https://link.springer.com/book/10.1007%2F978-1-4939-9074-0' style="color:#0000FF";>Link</a>
+                                        </li>
+
+                                    </ol>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div data-animate-effect="fadeInLeft">
+                                <h3><b>CRISPR-Cas</b></h3>
+                                <div class="services color-4">
+                                    <img src="https://www.frontiersin.org/files/Articles/491504/fmicb-10-02471-HTML/image_m/fmicb-10-02471-g001.jpg"
+                                        alt="" style="width:100%;"></img>
+                                    <br><br>
+                                    CRISPR-Cas systems are just discovered for 15 years and initially known as
+                                    prokaryotic
+                                    adaptive immune systems that protect against mobile genetic elements. <br>
+                                    Genome editing with CRISPR-Cas9 opens a new level of applications
+                                    including basic biological research,
+                                    development of biotechnology products, and specially treatment of
+                                    diseases.
+                                    (This revolutionary technique contributes to bring the Nobel Prize in
+                                    Chemistry in
+                                    2020 to
+                                    Emmanuelle Charpentier
+                                    and Jennifer Doudna).<br>
+                                    <br>
+
+                                    <iframe style="width:100%;" height="450"
+                                        src="https://www.youtube-nocookie.com/embed/2pp17E4E-O8" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                    </iframe>
+
+                                    I am very excited to see if this CRISPR-Cas9 gene editing technology could
+                                    treatment of
+                                    COVID-19? <br>
+
+                                    For CRISPR-Cas based diagnostic test for COVID-19, I would refer you to <a
+                                        href='https://www.nature.com/articles/s41587-020-0513-4' style="color:#0000FF";>
+                                        Link
+                                    </a>
+                                    and <a
+                                        href='https://www.sciencedirect.com/science/article/pii/S0753332220309318' style="color:#0000FF";>
+                                        Link
+                                    </a>
+                                    <br>
+
+                                    For CRISPR-Cas functions beyond defence, I would refer you to <a
+                                        href='https://www.uni-ulm.de/nawi/crispr-cas-functions-beyond-defence-spp2141/' style="color:#0000FF";>
+                                        CRISPR-Cas functions beyond defence - SPP2141
+                                    </a>
+
+                                    <br><br>
+
+
+                                    For this project, I aim to answer the following question:
+                                    <ul style="list-style-type:square;">
+                                        <li>What is a right mathematical model for the evolutionary of the
+                                            CRISPR-Cas system
+                                            (co-evolutionary of bacteria and viruses vs evolutionary of bacteria
+                                            alone)? For this
+                                            question, I will follow (Baumdicker et al 2018, The independent loss
+                                            model with ordered insertions for the evolution of CRISPR spacers,
+                                            <a
+                                                href="https://www.sciencedirect.com/science/article/pii/S0040580917300333" style="color:#0000FF";>
+                                                Link</a>) for evolutionary of bacterial
+                                            alone and (Iranzo et al 2013, Evolutionary Dynamics of the
+                                            Prokaryotic
+                                            Adaptive Immunity System CRISPR-Cas
+                                            in an Explicit Ecological Context, <a
+                                                href="https://jb.asm.org/content/jb/195/17/3834.full.pdf" style="color:#0000FF";>
+                                                Link</a>) for co-evolutionary.
+                                        </li>
+
+                                    </ul>
+
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+--->
+                <!---          <div class="row">
+                            <div data-animate-effect="fadeInLeft">
+                                <h3><b>Updates on COVID-19:</b></h3>
+                                <div class="tableauPlaceholder" id="viz1602630279381"
+                                    style="position: relative; width: 100%; height: 641.25px; overflow: hidden; display: block;">
+
+                                    <noscript><a href='#'><img alt=' '
+                                                src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;S9&#47;S9ZZ4DNDT&#47;1_rss.png'
+                                                style='border: none' /></a></noscript>
+                                    <script src="files/viz_v1.js"></script><iframe marginheight="0"
+                                        marginwidth="0" title="Data Visualization" allowtransparency="true"
+                                        allowfullscreen="true" class="tableauViz"
+                                        style="display: block; width: 100%; height: 641.25px; margin: 0px; padding: 0px; border: medium none;"
+                                        src="http://public.tableau.com/shared/S9ZZ4DNDT?:embed=y&amp;:showVizHome=no&amp;:host_url=https%3A%2F%2Fpublic.tableau.com%2F&amp;:embed_code_version=3&amp;:toolbar=yes&amp;:animate_transition=yes&amp;:display_static_image=no&amp;:display_spinner=no&amp;:display_overlay=yes&amp;:display_count=yes&amp;:language=en&amp;publish=yes&amp;:loadOrderID=0"
+                                        frameborder="0"></iframe>
+                                </div>
+                                <script
+                                    type="text/javascript">                    var divElement = document.getElementById('viz1602630279381'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.width = '100%'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; } else if (divElement.offsetWidth > 500) { vizElement.style.width = '100%'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '2077px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+
+                            </div>
+                        </div>
+--->
+
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+
+<!--  
+----------------------------------------------- Section: Publications ------------------------------------------------------------------- 
+-->
+
+
+
+<section class="services" data-section="pub">
+    <div class="narrow-content">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
+                <span class="heading-meta">Publications</span>
+
+            </div>
+        </div>
+        <div class="row row-pt-md">
+            <div>
+                <div class="services color-1">
+
+                    <div class="desc">
+                        <h3>Book</h3>
+                        <ol>
+
+
+                            <li>Hofrichter J., Jost J., Tran T.D., <i>Information geometry and
+                                    population genetics</i>: The Mathematical Structure of the
+                                Wright-Fisher model, Springer Series: Understanding Complex Systems,
+                                2017. <a href="http://www.springer.com/la/book/9783319520445" style="color:#0000FF" ;>
+                                    <img src="springer.gif" style="width:70px;height:50px;"> </a>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="services color-2">
+
+                    <div class="desc">
+                        <h3>Journals</h3>
+                        <ol>
+
+                            <li>Yamakou M., Tran T.D., Lévy noise-induced self-induced stochastic
+                                resonance in a memristive neuron, <i>Nonlinear Dynamics</i>,
+                                <b>107</b>:2847-2865, 2022
+                                <a href="https://link.springer.com/article/10.1007/s11071-021-07088-6"
+                                    style="color:#0000FF" ;> <img src="springer.gif"
+                                        style="width:70px;height:50px;"></a>.
+
+                            </li>
+
+
+                            <li>Peigné M., Tran T.D., On the asymptotic behavior of the Diaconis and
+                                Freedman's chain in a multidimensional simplex, <i> Journal of Applied
+                                    Probability</i>, <b>59</b>(2): 505-526, 2022.
+
+                                <a href="https://www.cambridge.org/core/journals/journal-of-applied-probability/article/abs/on-the-asymptotic-behavior-of-the-diaconisfreedman-chain-in-a-multidimensional-simplex/424E758CFBC9721318E8308C691A4888"
+                                    style="color:#0000FF" ;> <img src="image/Cambridge.png"
+                                        style="width:50px;height:20px;"></a>
+
+
+
+
+                                <a href="https://arxiv.org/abs/2006.02069" style="color:#0000FF" ;>
+                                    arXiv</a>.
+
+                            </li>
+
+
+                            <li>Jost J., Le H.V., Tran T.D., Probabilistic mappings and Bayesian
+                                nonparametrics, <i>The European Physical Journal Plus</i>, <b>136</b>:
+                                441, 2021. &nbsp;
+                                <a href="https://link.springer.com/article/10.1140/epjp/s13360-021-01427-7"
+                                    style="color:#0000FF" ;> <img src="springer.gif"
+                                        style="width:70px;height:50px;"></a>
+
+
+
+
+                                <!--- &nbsp;<a href="https://arxiv.org/abs/1905.11448" style="color:#0000FF";>arXiv</a></li> --->
+
+                            <li>Tal O., Tran T.D., Adaptive Bet-Hedging Revisited: Considerations of
+                                Risk and Time Horizon, <i>Bulletin of Mathematical Biology</i>
+                                <b>82</b>:50, 2020.
+
+                                <a href="https://link.springer.com/article/10.1007/s11538-020-00729-8"
+                                    style="color:#0000FF" ;> <img src="springer.gif"
+                                        style="width:70px;height:50px;"></a>
+
+                                <!--- &nbsp; <a href="https://www.mis.mpg.de/publications/preprints/2019/prepr2019-36.html" style="color:#0000FF";>MIS-Preprint 36/2019</a> &nbsp; <a href="https://arxiv.org/abs/2003.06793" style="color:#0000FF";> arXiv</a></li> --->
+
+                            <li>Hofrichter J., Jost J., Tran T.D., The geometry of recombination, <i>
+                                    Information Geometry</i>, <b>2</b>:177-207, 2019.
+
+                                <a href="https://link.springer.com/article/10.1007/s41884-019-00020-3"
+                                    style="color:#0000FF" ;> <img src="springer.gif"
+                                        style="width:70px;height:50px;"></a>
+
+                            <li> Yamakou M., Tran T.D., Luu H.D., Jost J., The stochastic
+                                FitzHugh-Nagumo model embeds a leaky integrate-and-fire model, <i>
+                                    Journal of Mathematical Biology</i>, <b>79</b>(2):509-532, 2019.
+
+                                <a href="https://link.springer.com/article/10.1007/s00285-019-01366-z"
+                                    style="color:#0000FF" ;> <img src="springer.gif"
+                                        style="width:70px;height:50px;"></a>
+
+                            <li> Tran T.D., Hofrichter J., Jost J., A general solution of the
+                                Wright-Fisher model of random genetic drift, <i>Differential Equations
+                                    and Dynamical Systems</i>, <b>27</b>:467–492, 2019.
+                                <!---  <a href="http://link.springer.com/article/10.1007/s12591-016-0289-7?wt_mc=internal.event.1.SEM.ArticleAuthorOnlineFirst" style="color:#0000FF";> Link to Journal</a> &nbsp;<a href="https://arxiv.org/abs/1207.6623" style="color:#0000FF";>arXiv</a> </li>--->
+
+                                <a href="http://link.springer.com/article/10.1007/s12591-016-0289-7?wt_mc=internal.event.1.SEM.ArticleAuthorOnlineFirst"
+                                    style="color:#0000FF" ;> <img src="springer.gif"
+                                        style="width:70px;height:50px;"></a>
+
+                            <li> Tal O., Tran T.D., New perspectives on multilocus ancestry
+                                informativeness, <i>Mathematical Biosciences</i>, <b>306</b>:60-81,
+                                2018.
+
+                                <a href="https://www.sciencedirect.com/science/article/pii/S0025556418301640"
+                                    style="color:#0000FF" ;> <img src="image/sciencedirect.png"
+                                        style="width:70px;height:50px;"></a> &nbsp;<a
+                                    href="https://www.biorxiv.org/content/10.1101/273466v1" style="color:#0000FF"
+                                    ;>bioRxiv</a>
+                            </li>
+
+
+
+                            <li> Luu H.D., Tran T.D., Jost J., Ergodicity of scalar stochastic
+                                differential equations with H&ouml;lder continuous coefficients,
+                                <i>Stochastic Processes and their Applications</i>,
+                                <b>128</b>(10):3253-3272, 2018. <a
+                                    href="https://www.sciencedirect.com/science/article/pii/S0304414917302740"
+                                    style="color:#0000FF" ;> <img src="image/sciencedirect.png"
+                                        style="width:70px;height:50px;"></a> &nbsp;<a
+                                    href="https://arxiv.org/abs/1608.06785" style="color:#0000FF" ;>arXiv</a>
+                            </li>
+
+                            <li> Tal O., Tran T.D., Portegies J., From Typical Sequences to Typical
+                                Genotypes, <i>Journal of Theoretical Biology</i> <b>419</b>(21):159-183,
+                                2017. <a href="http://www.sciencedirect.com/science/article/pii/S0022519317300656"
+                                    style="color:#0000FF" ;> <img src="image/sciencedirect.png"
+                                        style="width:70px;height:50px;"> </a> &nbsp;<a
+                                    href="https://www.biorxiv.org/content/10.1101/079491v2.full" style="color:#0000FF"
+                                    ;>bioRxiv</a> </li>
+
+
+
+                            <li> Hofrichter J., Tran T.D., Jost J., The uniqueness of hierarchically
+                                extended backward solutions of the Wright-Fisher model,
+                                <i>Communications in Partial Differential Equations</i>
+                                <b>41</b>(3):447-483, 2016. <a
+                                    href="http://www.tandfonline.com/doi/abs/10.1080/03605302.2015.1116558"
+                                    style="color:#0000FF" ;> <img src="image/taylor.png"
+                                        style="width:70px;height:50px;"></a>
+                                &nbsp;<a href="https://arxiv.org/abs/1407.3067" style="color:#0000FF" ;>arXiv</a>
+                            </li>
+
+                            <li> Hofrichter J., Tran T.D., Jost J., A hierarchical extension scheme for
+                                solutions of the Wright-Fisher model, <i>Communications in Mathematical
+                                    Sciences</i> <b>14</b>(4):1093-1110, 2016. <a
+                                    href="https://www.intlpress.com/site/pub/pages/journals/items/cms/content/vols/0014/0004/a011/index.php"
+                                    style="color:#0000FF" ;> <img src="image/ipb.png"
+                                        style="width:70px;height:50px;"></a>
+                                &nbsp;<a href="https://arxiv.org/abs/1406.5146" style="color:#0000FF" ;>arXiv</a> </li>
+
+                            <li> Tran T.D., Hofrichter J., Jost J., The free energy method and the
+                                Wright-Fisher model with 2 alleles, <i>Theory in Biosciences</i>
+                                <b>134</b>(3):83-92, 2015. <a
+                                    href="http://link.springer.com/article/10.1007%2Fs12064-015-0218-2"
+                                    style="color:#0000FF" ;> <img src="image/springer.gif"
+                                        style="width:70px;height:50px;"></a> &nbsp;<a
+                                    href="https://www.mis.mpg.de/publications/preprints/2015/prepr2015-28.html"
+                                    style="color:#0000FF" ;>MIS-Preprint 28/2015</a>
+                            </li>
+
+                            <li> Tran T.D., Hofrichter J., Jost J., The evolution of moment generating
+                                functions for the Wright-Fisher model of population genetics,
+                                <i>Mathematical Biosciences</i> <b>256</b>:10-17, 2014. <a
+                                    href="http://www.sciencedirect.com/science/article/pii/S0025556414001400"
+                                    style="color:#0000FF" ;> <img src="image/sciencedirect.png"
+                                        style="width:70px;height:50px;"> </a> &nbsp;<a
+                                    href="https://arxiv.org/abs/1401.5219" style="color:#0000FF" ;>arXiv</a>
+                            </li>
+
+                            <li> Tran T.D., Hofrichter J., Jost J., The mathematical structure of the
+                                Wright-Fisher model of population genetics, <i>Theory in Biosciences</i>
+                                <b>132</b>:73-82, 2013. <a
+                                    href="http://link.springer.com/article/10.1007%2Fs12064-012-0170-3"
+                                    style="color:#0000FF" ;> <img src="springer.gif"
+                                        style="width:70px;height:50px;"></a>&nbsp;<a
+                                    href="https://www.mis.mpg.de/publications/preprints/2014/prepr2014-39.html"
+                                    style="color:#0000FF" ;>MIS-Preprint 39/2014</a>
+                            </li>
+
+                            <li> Nguyen V.M., Tran, T.D., On the almost automorphy of bounded solutions
+                                of differential equations with piecewise constant argument, <i>J. Math.
+                                    Anal. Appl.</i> <b>326</b>:165-178, 2007.<a
+                                    href="http://www.sciencedirect.com/science/article/pii/S0022247X06002216"
+                                    style="color:#0000FF" ;> <img src="image/sciencedirect.png"
+                                        style="width:70px;height:50px;"></a> &nbsp;<a href="./articleJMAA.pdf"
+                                    style="color:#0000FF" ;>pdf-file</a></li>
+
+                            <li> Ngo Q.A., Du D.T., Tran T.D., Dang A.T., Notes on an Integral
+                                Inequality, <i>JIPAM</i> <b>7</b>(4) Article 120, 2006.&nbsp;<a
+                                    href="./articleJIPAM.pdf" style="color:#0000FF" ;>pdf-file</a></li>
+
+                            <li> Tran T.D., On the existence of almost periodic, periodic and
+                                quasi-periodic solutions of neutral differential equations with
+                                piecewise constant argument, <i>Intern. J. of Evolution Equations</i>
+                                <b>1</b>(2):121-135, 2005.&nbsp;<a href="./articleIJEVE.pdf" style="color:#0000FF"
+                                    ;>pdf-file</a>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!---                 
+                
+                <div>
+                    <div class="services color-3">
+                        
+                        <div class="desc">
+                            <h3>Preprints</h3>
+                            <ol>
+                                <li>
+                                            Yamakou M., Tran T.D.,
+                                            <i>L&eacute;vy noise-induced self-induced stochastic resonance in a memristive neuron</i>, submitted, 2020.
+                                            
+                                             
+                                            <a
+                                                href="https://arxiv.org/abs/2012.03032" style="color:#0000FF";>arXiv2012.03032</a>
+                                        </li>
+                                
+                                <li> Jost J., Le H.V., Tran T.D., <i>Differentiation of measures on complete Riemannian manifolds</i>, submitted, 2020.
+                                    <a href = "https://arxiv.org/abs/2008.13252" style="color:#0000FF";> arxiv2008.13252</a>
+                                </li>
+                               
+                               
+                              
+                                <li>Tran T.D., Hofrichter J., Jost J., <i>The free energy method for the Fokker-Planck of the Wright-Fisher model</i>, submitted, <a href="http://www.mis.mpg.de/publications/preprints/2015/prepr2015-29.html" style="color:#0000FF";>MIS-Preprint 29/2015</a>.</li>
+                                <li>Hofrichter J., Tran T.D., Jost J., <i>A hierarchical extension scheme for backward solutions of the Wright-Fisher model</i>, submitted, <a href="http://arxiv.org/abs/1406.5146" style="color:#0000FF";>arXiv1406.5146</a>.</li>
+                                    
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                --->
+
+            <!---
+                    
+                    
+                    
+                <div>
+                    <div class="services color-4">
+                        
+                        <div class="desc">
+                            <h3>Work in Progress</h3>
+                            <ol>
+                           
+                                
+                            
+                                <li>(with Jost J., Le H.V., Luu H.D.) <i> H-Concave function, information geometry, optimal transport, and their
+                                    applications in mathematical finance</i>.</li>
+                                 <li>(with Jost J., Le H.V., Luu H.D.) <i> Toward a unified approach for finite time local entropy</i>.</li>
+                                
+                                
+                                
+                                
+                                
+                                <li>(with Banisch S., Olbrich E.) <i> Opinion dynamics with polarization and coherence along multiple issues</i>. </li>
+                                
+                                
+                                
+                                
+                                
+                                <li>(with Jost J., Hofrichter J.) <i> Revisited the large deviation theory in Wright-Fisher models</i>.
+                                    
+                                    
+                                </li>
+                                
+                                
+                                
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+                
+                --->
+
+            <div>
+                <div class="services color-5">
+
+                    <div class="desc">
+                        <h3>Theses</h3>
+                        <ol>
+                            <li><i>Neutral dierential equations with piecewise constant
+                                    arguments</i>.<br>
+                                Diploma Thesis, Vietnam National University (2000).
+                            </li>
+
+                            <li><i>On the almost automorphiy of bounded solutions to dierential equation
+                                    with piecewise constant arguments</i>.<br>
+                                M. Sc. Thesis, Vietnam National University (2004).
+                            </li>
+
+                            <li><i>Information Geometry and the Wright-Fisher model of mathematical
+                                    population genetics</i>.<br>
+                                Ph. D. Thesis, University of Leipzig (2012).
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+</section>
+
+
+<!--  
+----------------------------------------------- Section: Talks ------------------------------------------------------------------- 
+-->
+
+
+
+<section class="services" data-section="talks">
+    <div class="narrow-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
+                    <div class="col-md-12">
+                        <div class="about-desc">
+                            <span class="heading-meta">Talks</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div data-animate-effect="fadeInLeft">
+
+                        <ul>
+
+                            <b>2021</b> <br>
+                            <ul>
+                                <li>Zoom Talk at <a href="http://baumdickerlab.de/index.php" style="color:#0000FF"
+                                        ;>Franz Baumdicker's group</a>,
+                                    Universität T&uuml;bingen (January 20, 2020)
+                                </li>
+
+
+                            </ul>
+                            <br>
+
+                            <b>2020</b> <br>
+                            <ul>
+                                <li>Zoom Talk at <a href="https://www.mis.mpg.de/strevol/index.html"
+                                        style="color:#0000FF" ;>Matteo Smerlak's group</a>, MPI-MiS,
+                                    Leipzig (December 22, 2020)
+                                </li>
+
+                                <li>Zoom Talk at <a href="http://www.math.uni-leipzig.de/~renesse/"
+                                        style="color:#0000FF" ;>Max Renesse's group</a>, Leipzig
+                                    University (June 08, 2020)
+                                </li>
+
+
+
+
+                            </ul>
+                            <br>
+
+                            <b>2019</b> <br>
+                            <ul>
+                                <li>Special session Talk at Vietnam-USA joint mathematical meeting, Quy
+                                    Nhon (June 10–13, 2019) </li>
+                                <li>Invited Talk at Berlin-Leipzig workshop in analysis and stochastics,
+                                    Leipzig (January 16–18, 2019) </li>
+
+                            </ul>
+                            <br>
+
+
+                            <b>2018</b> <br>
+                            <ul>
+
+                                <li>Invited Talk at Institute of Mathematics of ASCR, Zitna 25, Praha 1
+                                    (20-24 November, 2018) </li>
+                                <li>Contributed talk at <a href="http://www.ecmtb2018.org/welc" style="color:#0000FF" ;>
+                                        ECMTB 2018</a>, Lisbon, Portugal (July
+                                    23-27, 2018)</li>
+                                <li>Invited Talk at <a
+                                        href="http://www.fdpoisson.fr/?q=agenda/index&type=89&evenement=2692"
+                                        style="color:#0000FF" ;> Math Bio working group in Institut
+                                        Denis Poisson</a>, Tours (June 7, 2018)</li>
+                                <li>Invited Talk at <a href="https://www.mis.mpg.de/calendar/conferences/2018/mbd.html"
+                                        style="color:#0000FF" ;> Math Bio Day</a>, Leipzig (April 09,
+                                    2018)</li>
+                                <li>Contributed Talk at <a href="http://www.math.ac.vn/HPSCHanoi2018/"
+                                        style="color:#0000FF" ;> 7th International Conference on
+                                        Modeling, Simulation and Optimization of Complex Processes</a>,
+                                    Hanoi (March 19-March 23, 2018)</li>
+                                <li>Invited Talk at <a
+                                        href="http://math.ac.vn/conference/CIMPA2018/index.php?option=com_content&view=article&id=93:workshop&catid=78:hoi-nghi&Itemid=435&lang=vi"
+                                        style="color:#0000FF" ;> Mini-workshop on recent developments in
+                                        stochastic dynamics and stochastic analysis</a>, Hanoi (15-16
+                                    March, 2018)</li>
+                            </ul>
+                            <br>
+
+                            <b>2017</b> <br>
+                            <ul>
+                                <li>Invited Talk at Department of Probability and Statistics, Faculty of
+                                    Mathematics, Mechanics, and Informatics, VNU University of Science,
+                                    Hanoi (May 27, 2017)</li>
+                                <li>Invited Talk at workshop <a href="http://viasm.edu.vn/en/hdkh/mp2017"
+                                        style="color:#0000FF" ;>Some selected problems in modern probability</a>, Tuan
+                                    Chau
+                                    (May 12-14, 2017)</li>
+                                <li>Invited Talk at Department of Analysis, Faculty of Mathematics,
+                                    Mechanics, and Informatics, VNU University of Science, Hanoi (April
+                                    14, 2017)</li>
+                                <li>Invited Talk at workshop <a href="http://viasm.edu.vn/hdkh/spta2017"
+                                        style="color:#0000FF" ;>Stochastic processes and their
+                                        applications</a>, VIASM, Hanoi (March 09, 2017)</li>
+                            </ul>
+                            <br>
+
+                            <b>2016</b> <br>
+                            <ul>
+                                <li>Invited Talk at <a href="./2016Nov11.pdf" style="color:#0000FF" ;>
+                                        3rd Dresden-Leipzig Dynamics Day, TU Dresden, Germany (November
+                                        11, 2016) </a></li>
+                                <li>Invited Talk at <a
+                                        href="https://www.parmenides-foundation.org/events/workshops/workshop-hdv/"
+                                        style="color:#0000FF" ;> International Workshop on Statistical
+                                        Mechanics and Information in Evolution, Ludwig Maximillians
+                                        University, Munich, Germany (July 4-6, 2016)</a></li>
+                                <li>Poster section at <a href="http://igaia.utia.cz/" style="color:#0000FF" ;>
+                                        Information Geometry and its
+                                        Applications IV, Liblice, Czech Republic (June 12-17, 2016)</a>
+                                </li>
+                                <li>Invited Talk at <a href="http://www.mis.mpg.de/calendar/conferences/2016/be-le.html"
+                                        style="color:#0000FF" ;>Berlin-Leipzig workshop in analysis and
+                                        stochastics (April 13-15, 2016) </a></li>
+                            </ul>
+                            <br>
+
+                            <b>2015</b> <br>
+                            <ul>
+                                <li>Invited Talk: <a
+                                        href="http://www.dfg-spp1590.de/nuhag-php/OUT/event/make.php?event=review15"
+                                        style="color:#0000FF" ;>Review colloquium SPP 1590:
+                                        Probabilistic structures in Evolution, Bielefeld (September 3-4,
+                                        2015)</a></li>
+                                <li>Contributed Talk at <a href="http://www.math.ku.dk/~efeliu/trendsrnt/index.html"
+                                        style="color:#0000FF" ;>Workshop on Mathematical Trends in
+                                        Reaction Network Theory, July 1-3, 2015 in Copenhagen</a></li>
+                                <li>Invited Talk at <a href="http://web.evolbio.mpg.de/~traulsen/#home"
+                                        style="color:#0000FF" ;>Arne Traulsen's group</a>, Max Planck
+                                    Institute for Evolutionary Biology, Ploen (June 3-5, 2015)</li>
+                                <li>Contributed Talk at <a
+                                        href="http://www.math.le.ac.uk/people/ag153/homepage/MBE15/MBE15.htm"
+                                        style="color:#0000FF" ;>International conference: Modelling
+                                        Biological Evolution 2015: Linking Mathematical Theories with
+                                        Empirical Realities, combined with the LMS workshop:
+                                        Mathematical and Computational Models in Evolutionary Biology:
+                                        Shifting the Existing Paradigms (University of Leicester (UK),
+                                        April 28 - May 1, 2015) </a></li>
+                            </ul>
+                            <br>
+
+                            <b>2014</b> <br>
+                            <ul>
+                                <li>Contributed Talk at <a
+                                        href="http://conferences.chalmers.se/index.php/ecmtb/ecmtb/paper/view/829"
+                                        style="color:#0000FF" ;>The 9th European Conference on
+                                        Mathematical and Theoretical Biology, Gothenburg, Sweden (June
+                                        15-19, 2014).</a></li>
+
+                            </ul>
+                            <br>
+
+                            <b>2013</b> <br>
+                            <ul>
+                                <li>Contributed Talk at The 8th Vietnamese Mathematical Conference, Nha
+                                    Trang, Vietnam (August 10-14, 2013). </li>
+                                <li>Seminar Talk at Central European Seminar, Brno, Czech (May 24,
+                                    2013). </li>
+                                <li>Invited Talk at WIAS, Berlin, Germany (February 05, 2013).</li>
+                            </ul>
+                            <br>
+
+                            <b>2012</b> <br>
+                            <ul>
+                                <li>Invited Talk at WIAS, Berlin, Germany (September 13, 2012).</li>
+
+                            </ul>
+                            <br>
+
+                            <b>2011</b> <br>
+                            <ul>
+
+                                <li>Invited Talk: Minisymposium "Computational Biology with Medical
+                                    Applications", Helmholtz Centre for Infection Research,
+                                    Braunschweig, Germany (June 21, 2011).</li>
+                            </ul>
+                            <br>
+
+
+
+                            <b>2009</b> <br>
+                            <ul>
+                                <li>Contributed Talk at 5th Annual PhD Student Conference in
+                                    Probability, Leipzig, Germany (September 10-12, 2009).
+                                </li>
+                            </ul>
+                            <br>
+
+                            <b>2007</b> <br>
+                            <ul>
+                                <li>Contributed Talk at VNU and CNU Workshop on Analysis, Differential
+                                    Equations, and Dynamical Systems, Hanoi, Vietnam (February 2-5,
+                                    2007).</li>
+                            </ul>
+                            <br>
+
+                            <b>2004</b> <br>
+                            <ul>
+                                <li>Contributed Talk at International Conference on Differential
+                                    Equations and Applications, HoChiMinh City, Vietnam (August 22-25,
+                                    2004).</li>
+                            </ul>
+                        </ul>
+
+                        <br>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--  
+----------------------------------------------- Section: Services ------------------------------------------------------------------- 
+-->
+
+<section class="services" data-section="services">
+    <div class="narrow-content">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
+                <span class="heading-meta">Services</span>
+            </div>
+        </div>
+        <div class="row row-pt-md">
+            <div>
+                <div class="services color-1">
+                    <div class="desc">
+                        <h3>Journal Editor</h3>
+                        <li> <a href="http://journals.plos.org/plosone/static/publish" style="color:#0000FF" ;> Plos One
+                                (Academic Editor)</a></li>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="services color-2">
+                    <div class="desc">
+                        <h3>Funding Referee</h3>
+                        <li><a href="https://www.nsf.gov/funding/pgm_summ.jsp?pims_id=5690" style="color:#0000FF"
+                                ;>NSF-Mathematical Biology</a></li>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="services color-3">
+                    <div class="desc">
+                        <h3>Journal Referee</h3>
+                        <ul>
+                            <li> <a href="http://onlinelibrary.wiley.com/journal/10.1002/%28ISSN%291098-2426"
+                                    style="color:#0000FF" ;>Numerical Methods for Partial Differential
+                                    Equations (NMPDE)</a></li>
+                            <li> <a href="http://www.journals.elsevier.com/journal-of-theoretical-biology/"
+                                    style="color:#0000FF" ;>Journal of Theoretical Biology (JTB)</a>
+                            </li>
+                            <li> <a href="https://www.siam.org/journals/siap.php" style="color:#0000FF" ;>SIAM Journal
+                                    on Applied Mathematics (SIAP)</a></li>
+                            <li> <a href="http://www.ams.org/mr-database" style="color:#0000FF" ;>Mathematical Reviews
+                                    (MR)</a></li>
+                            <li> <a href="https://link.springer.com/journal/12064" style="color:#0000FF" ;>Theory in
+                                    Biosicences (TIBI)</a></li>
+                            <li> <a href="https://link.springer.com/journal/10441" style="color:#0000FF" ;>Acta
+                                    Biotheoretica (ACBI)</a></li>
+                            <li> <a href="https://www.worldscientific.com/worldscinet/aejm" style="color:#0000FF"
+                                    ;>Asian-European Journal of Mathematics
+                                    (AEJM)</a></li>
+                            <li> <a href="http://www.mdpi.com/journal/energies" style="color:#0000FF"
+                                    ;>MDPI-Energies</a></li>
+                            <li> <a href="http://www.mdpi.com/journal/computation" style="color:#0000FF"
+                                    ;>MDPI-Computation</a></li>
+                            <li> <a href="http://www.mdpi.com/journal/data" style="color:#0000FF" ;>MDPI-Data</a></li>
+                            <li> <a href="https://link.springer.com/journal/285" style="color:#0000FF" ;>Journal of
+                                    Mathematical Biology (JOMB)</a></li>
+                            <li> <a href="https://www.springer.com/journal/41884" style="color:#0000FF" ;>Information
+                                    Geometry (INGE)</a></li>
+                            <li> <a href="https://www.springer.com/journal/40840" style="color:#0000FF" ;>Bulletin of
+                                    the Malaysian Mathematical Sciences Society (BMMS)</a>
+                            </li>
+                            <li> <a href="https://www.tandfonline.com/action/journalInformation?show=aimsScope&journalCode=gssr20"
+                                    style="color:#0000FF" ;>Stochastics: An International Journal of
+                                    Probability and Stochastic Processes</a></li>
+                            <li> <a href="https://www.frontiersin.org/journals/genetics/sections/evolutionary-and-population-genetics#"
+                                    style="color:#0000FF" ;>Frontiers in Genetics, section Evolutionary
+                                    and Population Genetics</a></li>
+                            <!-- <li> <a href="http://www.mdpi.com/journal/computation">Computation</a></li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
